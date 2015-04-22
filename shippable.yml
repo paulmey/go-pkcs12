@@ -6,5 +6,12 @@ go: 1.4
 
 install: go get
 
+before_script:
+  - go install github.com/t-yuki/gocover-cobertura
+  
 # command to run tests
-script: go test -v ./...
+script: go test -coverprofile=coverage.txt -covermode count -v ./...
+
+after_script:
+  - mkdir -p shippable/codecoverage
+  - gocover-cobertura < coverage.txt > shippable/codecoverage/coverage.xml
