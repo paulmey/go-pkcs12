@@ -1,0 +1,10 @@
+# language setting
+language: go
+
+# version numbers
+go: 1.4
+
+install: go get
+
+# command to run tests
+script: go test -v ./...
